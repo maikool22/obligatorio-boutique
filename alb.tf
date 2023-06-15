@@ -13,11 +13,6 @@ resource "aws_alb_target_group_attachment" "oblimanual-tg-aws_alb_target_group_a
   target_id        = aws_instance.oblimanual-inst1.id
 }
 
-resource "aws_alb_target_group_attachment" "oblimanual-tg-aws_alb_target_group_attach2" {
-  target_group_arn = aws_lb_target_group.oblimanual-trg.arn
-  target_id        = aws_instance.oblimanual-inst2.id
-}
-
 resource "aws_lb" "obli-alb" {
   name               = "oblimanual-alb"
   internal           = false
