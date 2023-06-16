@@ -38,3 +38,7 @@ terraform.rc
 
 # Agrego la BASURA de Windows
 *Zone.Identifier
+
+
+#Agrego el vockey.pem
+*vockey.pem
