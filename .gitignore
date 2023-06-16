@@ -35,3 +35,6 @@ terraform.rc
 
 # Agrego los archivos BASURA de MAC
 .DS_Store
+
+# Agrego la BASURA de Windows
+*Zone.Identifier
