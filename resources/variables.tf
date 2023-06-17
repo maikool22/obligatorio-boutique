@@ -7,7 +7,7 @@ variable "vpc_cidr" {
   description = "CIDR para VPC"
   default     = "10.0.0.0/16"
 }
-/*
+/* esta variable nos servira para las subnets pero al tener mas de una, tengo que pensar como usarla
 variable "subnet_cidr" {
   description = "Subnet de CIDR"
   default     = ""
