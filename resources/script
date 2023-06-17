@@ -1,0 +1,19 @@
+# aca vamos a ir escribiendo el bendito script 
+
+#!/bin/bash
+
+# Este script instala con un poco de suerte, Docker y kubectl en Amazon Linux
+
+# 1. Instalar Docker
+sudo yum update -y
+sudo amazon-linux-extras install docker -y
+sudo service docker start
+sudo usermod -a -G docker $USER
+
+# 2. Instalar kubectl
+sudo curl --silent --location -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl --silent --location https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+sudo chmod +x /usr/local/bin/kubectl
+
+# 3. Verificar las instalaciones
+docker version
+kubectl version --client
