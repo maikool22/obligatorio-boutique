@@ -1,13 +1,13 @@
 # Creamos dos intancias
 
-resource "aws_instance" "oblimanual-inst1" {
+resource "aws_instance" "bastion" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = "vockey"
   subnet_id              = aws_subnet.oblimanual-subnet1-publica.id
   vpc_security_group_ids = [aws_security_group.oblimanual-sg.id]
   tags = {
-    Name      = "oblimanual-inst1"
+    Name      = "bastion"
     terraform = "True"
   }
   connection {
