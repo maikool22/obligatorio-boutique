@@ -2,7 +2,7 @@
 
 resource "aws_instance" "oblimanual-inst1" {
   ami                    = var.ami_id
-  instance_type          = "t3.large"
+  instance_type          = var.instance_type
   key_name               = "vockey"
   subnet_id              = aws_subnet.oblimanual-subnet1-publica.id
   vpc_security_group_ids = [aws_security_group.oblimanual-sg.id]
