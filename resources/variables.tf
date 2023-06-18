@@ -25,5 +25,5 @@ variable "instance_type" {
 }
 
 output "public_ip" {
-  value = aws_instance.oblimanual-inst1.public_ip
+  value = aws_instance.bastion.public_ip
 }

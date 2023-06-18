@@ -10,7 +10,7 @@ resource "aws_lb_target_group" "oblimanual-trg" {
 
 resource "aws_alb_target_group_attachment" "oblimanual-tg-aws_alb_target_group_attach1" {
   target_group_arn = aws_lb_target_group.oblimanual-trg.arn
-  target_id        = aws_instance.oblimanual-inst1.id
+  target_id        = aws_instance.bastion.id
 }
 
 resource "aws_lb" "obli-alb" {
