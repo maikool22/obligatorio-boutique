@@ -17,6 +17,3 @@ variable "vpc_aws_az" {
   description = "Zona de disponibilidad para VPC"
   default     = "us-east-1a"
 }
-output "public_ip" {
-  value = aws_instance.oblimanual-inst1.public_ip
-}
