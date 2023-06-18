@@ -1,7 +1,7 @@
 # Creamos dos intancias
 
 resource "aws_instance" "oblimanual-inst1" {
-  ami                    = var.ami-id
+  ami                    = var.ami_id
   instance_type          = "t2.micro"
   key_name               = "vockey"
   subnet_id              = aws_subnet.oblimanual-subnet1-publica.id
