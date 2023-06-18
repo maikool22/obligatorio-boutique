@@ -23,7 +23,10 @@ resource "aws_instance" "oblimanual-inst1" {
     inline = [
       "sudo hostnamectl hostname bastion",      
       "sudo dnf -y upgrade --releasever=2023.0.20230614",      
-      "sudo yum install -y git" # -y lo que hace es no pedir confirmacion, instalo httpd y git
+      "sudo yum install -y git", # -y lo que hace es no pedir confirmacion, instalo httpd y git
+      "sudo mkdir /tmp/obli_deploy/",
+      "sudo git clone https://github.com/maikool22/obligatorio-boutique.git /tmp/obli_deploy/",
+      "cd /tmp/obli_deploy/"
       #"sudo touch /var/www/html/index.html",       # creo el index.html vacio
       #"sudo chmod 666 /var/www/html/index.html",   # cambio permisos
       #"sudo echo nodo1 > /var/www/html/index.html" # hago un echo con el nombre del nodo y se lo pongo en el archivo
