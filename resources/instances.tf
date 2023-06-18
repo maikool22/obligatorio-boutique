@@ -24,7 +24,7 @@ resource "aws_instance" "oblimanual-inst1" {
       "sudo hostnamectl hostname bastion",  #Le configuramos nombre al bastion
       "sudo dnf -y upgrade --releasever=2023.0.20230614", #Actualizamos el core de la ami de linux     
       "sudo yum install -y git", # Instalamos git
-      "mkdir ~/.aws/",
+      "mkdir /home/ec2-user/.aws",
       "sudo mkdir /tmp/obli_deploy/", #creamos carpeta temporal en el bastion
       "sudo git clone https://github.com/maikool22/obligatorio-boutique.git /tmp/obli_deploy/", # clonamos el repo que vamos a usar
       "cd /tmp/obli_deploy/", #nos cambiamos al workdir
@@ -38,11 +38,11 @@ resource "aws_instance" "oblimanual-inst1" {
     ]
   }
     provisioner "file" {
-    source      = "~/.aws/credentials"
-    destination = "~/.aws/credentials"
+    source      = "/home/damian/.aws/credentials"
+    destination = "/home/ec2-user/.aws/credentials"
   }
     provisioner "file" {
-    source      = "~/.aws/config"
-    destination = "~/.aws/config"
+    source      = "/home/damian/.aws/config"
+    destination = "/home/ec2-user/.aws/config"
   }
 }

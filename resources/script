@@ -15,13 +15,16 @@ sudo chmod 666 /var/run/docker.sock
 sudo curl --silent --location -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl --silent --location https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 sudo chmod +x /usr/local/bin/kubectl
 
-# 3. Verificar las instalaciones
-docker version
-kubectl version --client
+# 3. Hago el build de las imagenes
 
 
-#creo el repo
-aws ecr create-repository --repository-name oblirepo
+
+
+
+#cartservice
+aws ecr create-repository --repository-name cartservice
 #creo una variable con el uri ID del repo
-REPONAME=$(aws ecr describe-repositories --query 'repositories[].repositoryUri' --output text)
+REPONAME=$(aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1)
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPONAME
 
