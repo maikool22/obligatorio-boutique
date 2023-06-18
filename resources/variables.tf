@@ -17,6 +17,11 @@ variable "vpc_aws_az" {
   description = "Zona de disponibilidad para VPC"
   default     = ""
 }
+variable "instance_type" {
+  description = "Tipo de Instancia"
+  default     = ""
+}
+
 output "public_ip" {
   value = aws_instance.oblimanual-inst1.public_ip
 }
