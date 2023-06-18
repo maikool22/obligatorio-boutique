@@ -41,4 +41,4 @@ terraform.rc
 
 
 #Agrego el vockey.pem
-*vockey.pem
+vockey.pem
