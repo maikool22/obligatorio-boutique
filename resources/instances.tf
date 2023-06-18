@@ -21,7 +21,8 @@ resource "aws_instance" "oblimanual-inst1" {
 
   provisioner "remote-exec" {
     inline = [
-      "yum update -y",
+      "sudo yum update -y",
+      "sudo dnf upgrade --releasever=2023.0.20230614",
       "sudo yum install -y git" # -y lo que hace es no pedir confirmacion, instalo httpd y git
       #"sudo touch /var/www/html/index.html",       # creo el index.html vacio
       #"sudo chmod 666 /var/www/html/index.html",   # cambio permisos
