@@ -30,7 +30,7 @@ sudo chmod +x /usr/local/bin/kubectl
 ECR_ID=`aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1`
 aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1 > ~/url
 # aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(cat ~/url)
-#aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
 cd /tmp/obli_deploy/src/cartservice/src
 docker build -t cartservice .
 docker tag cartservice:latest $(cat ~/url)/cartservice:latest
