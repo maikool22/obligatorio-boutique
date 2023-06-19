@@ -1,7 +1,7 @@
 variable "ami_id" {
   description = "Id de la Ami"
   type        = string
-  default     = "" 
+  default     = ""
 }
 variable "vpc_cidr" {
   description = "CIDR para VPC"
@@ -30,5 +30,5 @@ output "public_ip" {
 
 variable "repository_names" {
   type    = list(string)
-  default = ["adservice", "cartservice", "checkoutservice", "currencyservice", "emailservice", "frontend", "loadgenerator", "paymentservice", "productcatalogservice",  "recommendationservice",  "redis", "shippingservice"] 
+  default = ["adservice", "cartservice", "checkoutservice", "currencyservice", "emailservice", "frontend", "loadgenerator", "paymentservice", "productcatalogservice", "recommendationservice", "redis", "shippingservice"]
 }

@@ -17,17 +17,33 @@ resource "aws_instance" "bastion" {
     private_key = file("./vockey.pem")
   }
 
+#no nos quedo de otra que copiar asi las credenciales, sino no andaba :P
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/ec2-user/.aws"
+    ]
+  }
+
+  provisioner "file" {
+    source      = "/home/damian/.aws/credentials"
+    destination = "/home/ec2-user/.aws/credentials"
+  }
+  provisioner "file" {
+    source      = "/home/damian/.aws/config"
+    destination = "/home/ec2-user/.aws/config"
+  }
+
+
 
 
   provisioner "remote-exec" {
     inline = [
-      "sudo hostnamectl hostname bastion",  #Le configuramos nombre al bastion
-      "sudo dnf -y upgrade --releasever=2023.0.20230614", #Actualizamos el core de la ami de linux     
-      "sudo yum install -y git", # Instalamos git
-      "mkdir /home/ec2-user/.aws",
-      "sudo mkdir /tmp/obli_deploy/", #creamos carpeta temporal en el bastion
+      "sudo hostnamectl hostname bastion",                                                      #Le configuramos nombre al bastion
+      "sudo dnf -y upgrade --releasever=2023.0.20230614",                                       #Actualizamos el core de la ami de linux     
+      "sudo yum install -y git",                                                                # Instalamos git      
+      "sudo mkdir /tmp/obli_deploy/",                                                           #creamos carpeta temporal en el bastion
       "sudo git clone https://github.com/maikool22/obligatorio-boutique.git /tmp/obli_deploy/", # clonamos el repo que vamos a usar
-      "cd /tmp/obli_deploy/resources", #nos cambiamos al workdir
+      "cd /tmp/obli_deploy/resources",                                                          #nos cambiamos al workdir
       "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",
       "sudo sh deploy.sh" #aca ejecutamos el deploy de los modulos
 
@@ -38,12 +54,5 @@ resource "aws_instance" "bastion" {
       #"sudo echo nodo1 > /var/www/html/index.html" # hago un echo con el nombre del nodo y se lo pongo en el archivo
     ]
   }
-    provisioner "file" {
-    source      = "/home/damian/.aws/credentials"
-    destination = "/home/ec2-user/.aws/credentials"
-  }
-    provisioner "file" {
-    source      = "/home/damian/.aws/config"
-    destination = "/home/ec2-user/.aws/config"
-  }
+
 }

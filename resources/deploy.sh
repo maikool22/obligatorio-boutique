@@ -6,7 +6,7 @@
 
 # 1. Instalar Docker
 sudo dnf install docker -y 
-sudo usermod -a -G docker $USER
+sudo usermod -a -G docker ec2-user
 sudo systemctl enable --now docker
 sudo chmod 666 /var/run/docker.sock
 
@@ -27,7 +27,7 @@ sudo chmod +x /usr/local/bin/kubectl
 #aws ecr create-repository --repository-name cartservice
 
 #creo una variable con el uri ID del repo
-ECR_ID=$(aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1)
+ECR_ID=`aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1`
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
 cd /tmp/obli_deploy/src/cartservice/src
 docker build -t cartservice .
