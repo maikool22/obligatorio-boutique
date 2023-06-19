@@ -14,5 +14,5 @@ terraform {
 }
 
 provider "docker" {
-  host = "unix:///var/run/docker.sock"
+  host = "unix:///home/damian/.docker/desktop/docker.sock"
 }
