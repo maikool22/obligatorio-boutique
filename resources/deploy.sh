@@ -28,13 +28,13 @@ sudo chmod +x /usr/local/bin/kubectl
 
 #creo una variable con el uri ID del repo
 #ECR_ID=`aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1`
-aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1 > ~/url
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(cat ~/url)
-#aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
-cd /tmp/obli_deploy/src/cartservice/src
-docker build -t cartservice .
-docker tag cartservice:latest $(cat ~/url)/cartservice:latest
-docker push $(cat ~/url)/cartservice:latest
+# aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1 > ~/url
+# aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(cat ~/url)
+# #aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
+# cd /tmp/obli_deploy/src/cartservice/src
+# docker build -t cartservice .
+# docker tag cartservice:latest $(cat ~/url)/cartservice:latest
+# docker push $(cat ~/url)/cartservice:latest
 
 #adservice
 # aws ecr create-repository --repository-name adservice
