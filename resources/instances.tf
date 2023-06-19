@@ -45,7 +45,7 @@ resource "aws_instance" "bastion" {
       "sudo git clone https://github.com/maikool22/obligatorio-boutique.git /tmp/obli_deploy/", # clonamos el repo que vamos a usar
       "cd /tmp/obli_deploy/resources",                                                          #nos cambiamos al workdir
       "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",
-      "sudo sh deploy.sh" #aca ejecutamos el deploy de los modulos
+      "sh deploy.sh" #aca ejecutamos el deploy de los modulos
 
 
 
