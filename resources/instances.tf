@@ -26,10 +26,10 @@ resource "aws_instance" "bastion" {
       "sudo yum install -y git", # Instalamos git
       "mkdir /home/ec2-user/.aws",
       "sudo mkdir /tmp/obli_deploy/", #creamos carpeta temporal en el bastion
-      "sudo git clone https://github.com/maikool22/obligatorio-boutique.git /tmp/obli_deploy/" # clonamos el repo que vamos a usar
-      #"cd /tmp/obli_deploy/resources", #nos cambiamos al workdir
-      #"sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",
-      #"sudo sh deploy.sh" #aca ejecutamos el deploy de los modulos
+      "sudo git clone https://github.com/maikool22/obligatorio-boutique.git /tmp/obli_deploy/", # clonamos el repo que vamos a usar
+      "cd /tmp/obli_deploy/resources", #nos cambiamos al workdir
+      "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",
+      "sudo sh deploy.sh" #aca ejecutamos el deploy de los modulos
 
 
 
