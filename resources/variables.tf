@@ -27,3 +27,8 @@ variable "instance_type" {
 output "public_ip" {
   value = aws_instance.bastion.public_ip
 }
+
+variable "repository_names" {
+  type    = list(string)
+  default = ["adservice", "cartservice", "checkoutservice", "currencyservice", "emailservice", "frontend", "loadgenerator", "paymentservice", "productcatalogservice",  "recommendationservice",  "redis", "shippingservice"] 
+}
