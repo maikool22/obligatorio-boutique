@@ -1,4 +1,4 @@
-# Creamos dos intancias
+# Creamos el bastion
 
 resource "aws_instance" "bastion" {
   ami                    = var.ami_id
