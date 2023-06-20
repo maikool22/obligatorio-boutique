@@ -27,25 +27,27 @@ ac va el dibujo en drowio
 ## Datos de Infraestructura:
 aca van los tipos de instancia, bloques cidr, firewalling, etc
 ## Servicios de AWS usados:
-ec2, eks, ecr, N I C K niki niki niki jam
+- ec2 
+- eks 
+- ecr
+- N I C K niki niki niki jam
 ## Despliegue de la APP:
 aqui hablamos de como construimos las imagenes con docker y como las abarajamos y desplegamos con kubernetes.
 vaya uno a saber como
 ## Requisitos para el Despliegue de la APP:
-cli aws
-la cuenta que tenemos para aws
-un pc
+- cli aws
+- la cuenta que tenemos para aws
+- un pc
 ## Pruebas de Funcionamiento:
 fotos, pruebas y videos de la app funcionando
 ## Dificultades:
-muchas
-entre otras lo de las instancias y como influye los recursos de estas al momento de buildear y demas 
-las dificultades con docker y kuernetes
-el mongo de maikool
+- maikool
+- entre otras lo de las instancias y como influye los recursos de estas al momento de buildear y demas 
+- las dificultades con docker y kuernetes
 ## Oportunidades de Mejora:
-cambiar de compa
-la automatizacion total mediante terraform
-etc
+- la automatizacion total mediante terraform
+- etc
+- etc
 ## Declaracion de Autoria:
 Por la siguiente, Maikool Rodriguez  y Damián Sandoval con números de estudiante 253225  y 205106 respectivamente, estudiantes de la carrera “Analista en Infraestructura Informática” en relación con el trabajo obligatorio de fin de semestre presentado para su evaluación y defensa, declaramos que asumimos la autoría de dicho documento entendida en el sentido de que no se han utilizado fuentes sin citarlas debidamente.
 
