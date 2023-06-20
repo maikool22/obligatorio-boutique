@@ -14,7 +14,7 @@ Se divide el proyecto en 3 etapas:
  - Construccion de Imagenes
  - Despliegue de de Containers
 
-# Creacion de Infraestructurax 
+### Creacion de Infraestructurax 
 
 
 ## Diagrama de Arquitectura:
