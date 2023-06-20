@@ -1,9 +1,10 @@
-#     ____                 __   _                        ____          __ _            
-#    / __ ) ____   __  __ / /_ (_)____ _ __  __ ___     / __ \ ____   / /(_)____   ___ 
-#   / __  |/ __ \ / / / // __// // __ `// / / // _ \   / / / // __ \ / // // __ \ / _ \
-#  / /_/ // /_/ // /_/ // /_ / // /_/ // /_/ //  __/  / /_/ // / / // // // / / //  __/
-# /_____/ \____/ \__,_/ \__//_/ \__, / \__,_/ \___/   \____//_/ /_//_//_//_/ /_/ \___/ 
-#                                /_/                                                  
+
+    dMMMMb  .aMMMb  dMP dMP dMMMMMMP dMP .aMMMb  dMP dMP dMMMMMP        .aMMMb  dMMMMb  dMP     dMP dMMMMb  dMMMMMP 
+   dMP"dMP dMP"dMP dMP dMP    dMP   amr dMP"dMP dMP dMP dMP            dMP"dMP dMP dMP dMP     amr dMP dMP dMP      
+  dMMMMK" dMP dMP dMP dMP    dMP   dMP dMP.dMP dMP dMP dMMMP          dMP dMP dMP dMP dMP     dMP dMP dMP dMMMP     
+ dMP.aMF dMP.aMP dMP.aMP    dMP   dMP dMP.MMP dMP.aMP dMP            dMP.aMP dMP dMP dMP     dMP dMP dMP dMP        
+dMMMMP"  VMMMP"  VMMMP"    dMP   dMP  VMMP"MP VMMMP" dMMMMMP         VMMMP" dMP dMP dMMMMMP dMP dMP dMP dMMMMMP     
+                                                                                                                
 ---
 # Descripcion del Problema:
 La startup "e-shop Services" ha recibido una ronda de inversión para expandir sus operaciones por todo el mundo, haciendo llegar sus servicios de e-commerce y retail, a todo el continente de América.La competencia actualmente está posicionada en la región a la cual se quiere expandir, pero los inversionistas están presionado para que  "e-shop Services" expanda su marca ya que de esto depende seguir invirtiendo.Se ha contratado a la consultora BitBeat para modernizar y desplegar la arquitectura e infraestructura de su aplicación que actualmente corre en un datacenter on-premise.Una célula de desarrollo trabajó en la implementación del e-commerce basado en una arquitectura de microservicios para correr sobre containers cuyo ciclo de integración continua ya que se encuentra configurado y la solución ya se encuentra disponible para desplegar por parte del equipo de DevOps.
