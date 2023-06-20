@@ -1,4 +1,4 @@
-https://profesionalonline.com.uy/wp-content/uploads/2021/10/ort.jpg
+
 <h1 align="center"> BOUTIQUE ONLINE </h1>
 
 ---
