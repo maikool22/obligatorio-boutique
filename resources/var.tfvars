@@ -3,3 +3,4 @@ vpc_cidr      = "10.0.0.0/16"
 ami_id        = "ami-04a0ae173da5807d3" # Id de Amazon Linux
 instance_type = "t3.large"
 # Para aplicar estos valores debemos hacer terraform apply -var-file=var.tfvars
+# aca esta este comentario sin una razon aparente... o si?
