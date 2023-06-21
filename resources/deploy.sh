@@ -80,7 +80,7 @@ for service in "${MICROSERVICES[@]}"
 do
   echo "Cambio el tag en el Manifest de: $service..." 
   cd "$SRC_WORKDIR/$service/deployment"
-  sudo sed -i "s/<IMAGE:TAG>/$ECR_IDi\/$service:latest/g" kubernetes-manifests.yaml  
+  sudo sed -i "s/<IMAGE:TAG>/$ECR_ID\/$service:latest/g" kubernetes-manifests.yaml  
   cd ../..
 done
 
