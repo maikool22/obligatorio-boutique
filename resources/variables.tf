@@ -33,6 +33,6 @@ variable "repository_names" {
   default = ["adservice", "cartservice", "checkoutservice", "currencyservice", "emailservice", "frontend", "loadgenerator", "paymentservice", "productcatalogservice", "recommendationservice", "redis", "shippingservice"]
 }
 
-output "LabRole_ID" {
-  value = aws_iam_role.prueba.id  
-}
+# output "LabRole_ID" {
+#   value = aws_iam_role.prueba.id  
+# }
