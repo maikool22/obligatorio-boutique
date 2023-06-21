@@ -86,7 +86,8 @@ for service in "${MICROSERVICES[@]}"
 do
   echo "Cambio el tag en el Manifest de: $service..." 
   cd "$SRC_WORKDIR/$service/deployment"
-  sudo sed -i "s/<IMAGE:TAG>/$ECR_ID\/$service:latest/g" kubernetes-manifests.yaml  
+  aux=$(aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text)
+  sudo sed -i "s/<IMAGE:TAG>/$aux:latest/g" kubernetes-manifests.yaml  
 done
 
 
