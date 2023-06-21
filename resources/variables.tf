@@ -24,15 +24,9 @@ variable "instance_type" {
   default     = ""
 }
 
-output "public_ip" {
-  value = aws_instance.bastion.public_ip
-}
-
 variable "repository_names" {
   type    = list(string)
   default = ["adservice", "cartservice", "checkoutservice", "currencyservice", "emailservice", "frontend", "loadgenerator", "paymentservice", "productcatalogservice", "recommendationservice", "redis", "shippingservice"]
 }
 
-# output "LabRole_ID" {
-#   value = aws_iam_role.prueba.id  
-# }
+

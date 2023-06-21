@@ -17,7 +17,7 @@ resource "aws_instance" "bastion" {
     private_key = file("./vockey.pem")
   }
 
-#no nos quedo de otra que copiar asi las credenciales, sino no andaba :P
+  #no nos quedo de otra que copiar asi las credenciales, sino no andaba :P
   provisioner "remote-exec" {
     inline = [
       "mkdir /home/ec2-user/.aws"
@@ -46,13 +46,11 @@ resource "aws_instance" "bastion" {
       "cd /tmp/obli_deploy/resources",                                                          #nos cambiamos al workdir
       "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",
       "sh deploy.sh" #aca ejecutamos el deploy de los modulos
-
-
-
-      #"sudo touch /var/www/html/index.html",       # creo el index.html vacio
-      #"sudo chmod 666 /var/www/html/index.html",   # cambio permisos
-      #"sudo echo nodo1 > /var/www/html/index.html" # hago un echo con el nombre del nodo y se lo pongo en el archivo
     ]
   }
+
+  # provisioner "local-exec" {
+
+  # }
 
 }

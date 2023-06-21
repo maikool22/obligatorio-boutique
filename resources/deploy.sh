@@ -5,7 +5,7 @@
 # Este script instala con un poco de suerte, Docker y kubectl en Amazon Linux
 
 # 1. Instalar Docker
-sudo dnf install docker -y 
+sudo dnf install telnet docker -y 
 sudo usermod -a -G docker ec2-user
 sudo systemctl enable --now docker
 sudo chmod 666 /var/run/docker.sock
@@ -18,8 +18,9 @@ sudo chmod +x /usr/local/bin/kubectl
 # 3. Hago el build de las imagenes
 
 
-
-
+#ESTO LO VOY A PRECESIAR DESPUES
+#aws eks update-kubeconfig --region us-east-1 --name oblimanual-kluster
+#kubectl create -f /tmp/obli_deploy/src/adservice/deployment/kubernetes-manifests.yaml
 
 #cartservice
 
