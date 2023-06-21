@@ -3,6 +3,9 @@
 resource "aws_instance" "bastion" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
+  root_block_device {
+    volume_size = 16
+  }
   key_name               = "vockey"
   subnet_id              = aws_subnet.oblimanual-subnet1-publica.id
   vpc_security_group_ids = [aws_security_group.oblimanual-sg.id]
