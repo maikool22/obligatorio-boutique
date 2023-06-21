@@ -9,7 +9,7 @@
 # 4. Creo una variable con el uri ID del repo
 ECR_ID=`aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1`
 
-SRC_WORKDIR= `/tmp/obli_deploy/src/`
+SRC_WORKDIR="/tmp/obli_deploy/src/"
 
 MICROSERVICES=(
   "adservice"
@@ -44,9 +44,9 @@ for service in "${MICROSERVICES[@]}"
 do
   echo "Haciendo el build para: $service..."
   if [[ "$service" == "cartservice" ]]; then
-    cd "$SRC_WORKDIR/$service/src" || continue
+    cd "$SRC_WORKDIR$service/src" || continue
   else
-    cd "$SRC_WORKDIR/$service" || continue
+    cd "$SRC_WORKDIR$service" || continue
   fi
   docker build -t "$service" .
   cd ../..
@@ -62,9 +62,9 @@ for service in "${MICROSERVICES[@]}"
 do
   echo "Haciendo el build para: $service..."
   if [[ "$service" == "cartservice" ]]; then
-    cd "$SRC_WORKDIR/$service/src" || continue
+    cd "$SRC_WORKDIR$service/src" || continue
   else
-    cd "$SRC_WORKDIR/$service" || continue
+    cd "$SRC_WORKDIR$service" || continue
   fi
   docker build -t "$service" .
   docker tag $service:latest $ECR_ID/$service:latest
@@ -80,21 +80,16 @@ for service in "${MICROSERVICES[@]}"
 do
   echo "Cambio el tag en el Manifest de: $service..." 
   cd "$SRC_WORKDIR/$service/deployment"
-  sed -i "s/<IMAGE:TAG>/$service:latest/g" kubernetes-manifests.yaml
-  
+  sudo sed -i "s/<IMAGE:TAG>/$service:latest/g" kubernetes-manifests.yaml  
   cd ../..
 done
 
 
 #Y aca si anda todo, levanto los deploys....
-
-
-#Aca le cambio el tag a los manifest de kubernetes
 for service in "${MICROSERVICES[@]}"
 do
   echo "Deployando: $service..." 
-  cd "$SRC_WORKDIR/$service/deployment"
-  sed -i "s/<IMAGE:TAG>/$service:latest/g" kubernetes-manifests.yaml
+  cd "$SRC_WORKDIR/$service/deployment"  
   kubectl create -f kubernetes-manifests.yaml
   cd ../..
 done

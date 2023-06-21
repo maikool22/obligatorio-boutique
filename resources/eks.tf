@@ -9,7 +9,7 @@ resource "aws_eks_cluster" "oblimanual-kluster" {
   vpc_config {
     subnet_ids = [aws_subnet.oblimanual-subnet1-publica.id, aws_subnet.oblimanual-subnet2-publica.id]
   }
-  cluster_endpoint_public_access  = true
+  #cluster_endpoint_public_access  = true
 }
 
 # Se crea el Node Group donde se levantarán los Workers de EKS.
