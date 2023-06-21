@@ -93,6 +93,7 @@ do
   kubectl create -f kubernetes-manifests.yaml
   cd ../..
 done
+echo "listo"
 
 
 
