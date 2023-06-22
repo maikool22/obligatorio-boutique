@@ -15,7 +15,7 @@ ECR_ID=$(aws ecr describe-repositories --repository-names cartservice --query 'r
 
 # la subcarpeta donde estan los datos para la construccion y despliegue de las imagenes.
 SRC_WORKDIR="/tmp/obli_deploy/src/"
-
+sudo chmod -R 777 /tmp/obli_deploy
 #Aca hacemos una lista con los modulos para despues llamarla con un "for"
 
 MICROSERVICES=(
@@ -88,7 +88,7 @@ do
   cd "$SRC_WORKDIR/$service/deployment"
   aux=$(aws ecr describe-repositories --repository-names $service --query 'repositories[].repositoryUri' --output text)
   echo $aux
-  sed -i "s/<IMAGE:TAG>/$aux:latest/g" kubernetes-manifests.yaml  
+  sed -i "s|<IMAGE:TAG>|$aux:latest|g" kubernetes-manifests.yaml  
 done
 
 
