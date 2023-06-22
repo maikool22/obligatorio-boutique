@@ -87,7 +87,8 @@ do
   echo "Cambio el tag en el Manifest de: $service..." 
   cd "$SRC_WORKDIR/$service/deployment"
   aux=$(aws ecr describe-repositories --repository-names $service --query 'repositories[].repositoryUri' --output text)
-  sudo sed -i "s/<IMAGE:TAG>/$aux:latest/g" kubernetes-manifests.yaml  
+  echo $aux
+  sed -i "s/<IMAGE:TAG>/$aux:latest/g" kubernetes-manifests.yaml  
 done
 
 
