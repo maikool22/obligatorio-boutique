@@ -45,7 +45,7 @@ resource "aws_instance" "bastion" {
       "cd /tmp/obli_deploy/resources",                                                          #nos cambiamos al workdir
       "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",
       "sudo chmod -R 777 /tmp/obli_deploy/",
-      "bash -x deploy.sh" #aca ejecutamos el deploy de los modulos
+      "bash deploy.sh" #aca ejecutamos el deploy de los modulos
     ]
   }
 }
