@@ -100,8 +100,17 @@ do
   kubectl create -f kubernetes-manifests.yaml 
 
 done
-echo "listo"
+echo "pronto!"
 
 ENDPOINT=$(kubectl get -o json svc frontend-external | grep hostname)
-echo "el endpoint de la tienda es:  "$ENDPOINT
+
+echo: ""
+echo: ""
+echo: ""
+echo: "###################################################################################"
+echo: "el endpoint de la tienda es:  "$ENDPOINT
+echo: "###################################################################################"
+echo: ""
+echo: ""
+echo: ""
 
