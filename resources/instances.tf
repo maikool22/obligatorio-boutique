@@ -35,10 +35,6 @@ resource "aws_instance" "bastion" {
     source      = "/home/damian/.aws/config"
     destination = "/home/ec2-user/.aws/config"
   }
-
-
-
-
   provisioner "remote-exec" {
     inline = [
       "sudo hostnamectl hostname bastion",                                                      #Le configuramos nombre al bastion
@@ -52,9 +48,4 @@ resource "aws_instance" "bastion" {
       "bash -x deploy.sh" #aca ejecutamos el deploy de los modulos
     ]
   }
-
-  # provisioner "local-exec" {
-
-  # }
-
 }
