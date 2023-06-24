@@ -50,25 +50,32 @@ aca van los tipos de instancia, bloques cidr, firewalling, etc
 aqui hablamos de como construimos las imagenes con docker y como las abarajamos y desplegamos con kubernetes.
 vaya uno a saber como
 ## Requisitos para el Despliegue de la APP:
-- cli aws
-- la cuenta que tenemos para aws
-- un pc
+- Un pc con internet
+- AWS cli 2.11.21
+- Terraform 1.5.1
+- Terraform provider aws 5.3.0
+- Cuenta en aws (se utilizó la cuenta de estudiante)
+
 ## Pruebas de Funcionamiento:
 fotos, pruebas y videos de la app funcionando
-## Dificultades:
-- maikool
-- entre otras lo de las instancias y como influye los recursos de estas al momento de buildear y demas 
-- las dificultades con docker y kuernetes
+## Desafios encontrados:
+- El poder separar el problema planteado en distintos problemas mas pequeños para resolver facilmente
+- El manejo de las variables y como debiamos utilizarlas en nuestra solucion.
+- Comprension basica de como funciona Docker y Kubernetes.
+- La ami que oficia de bastion a menudo se quedaba corta de recursos para las tareas.
 ## Oportunidades de Mejora:
-- la automatizacion total mediante terraform
-- etc
-- etc
+- Evitar lo mas posible la dependencia de provisioners
+- Utilizar provider de Kubernets para la parte del build.
+- Utilizar modulos, por falta de tiempo no se pudo implementar.
+- 
 ## Declaracion de Autoria:
 Por la siguiente, Maikool Rodriguez  y Damián Sandoval con números de estudiante 253225  y 205106 respectivamente, estudiantes de la carrera “Analista en Infraestructura Informática” en relación con el trabajo obligatorio de fin de semestre presentado para su evaluación y defensa, declaramos que asumimos la autoría de dicho documento entendida en el sentido de que no se han utilizado fuentes sin citarlas debidamente.
 
 ## Referencias:
-el mauri
-
+- Documentacion de Terraform
+- Documentacion de Kubernetes
+- Documentacion de AWS
+- Videos de clase
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
