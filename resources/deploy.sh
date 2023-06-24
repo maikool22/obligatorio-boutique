@@ -62,11 +62,8 @@ do
   docker build -t "$service" .
 done
 
-
 # Ahora nos logueamos al registry con docker
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
-echo $ECR_ID
-
 
 # Hacemos el build de las imagenes
 
@@ -105,22 +102,15 @@ do
   kubectl create -f kubernetes-manifests.yaml 
 
 done
-<<<<<<< HEAD
-echo "pronto!"
-=======
->>>>>>> ee8c5b6 (limpieza del codigo del script)
 
 # Con la siguiente variable, indicaremos el endpoint generado por el Load Balancer de Kubernetes.
 # Podemos utilizar esta URL en el navegador para acceder a la tienda.
 ENDPOINT=$(kubectl get -o json svc frontend-external | grep hostname)
-<<<<<<< HEAD
-=======
-echo "El endpoint de la tienda es:  "$ENDPOINT
->>>>>>> ee8c5b6 (limpieza del codigo del script)
+
 
 echo ""
+echo "#########################################################################################################################"
+echo "ENDPOINT:  "$ENDPOINT
+echo "#########################################################################################################################"
 echo ""
 echo ""
-echo "#########################################################################################################################"
-echo "el endpoint de la tienda es:  "$ENDPOINT
-echo "#########################################################################################################################"
