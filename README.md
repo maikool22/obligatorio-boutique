@@ -46,9 +46,26 @@ aca van los tipos de instancia, bloques cidr, firewalling, etc
 - eks 
 - ecr
 - N I C K niki niki niki jam
+
 ## Despliegue de la APP:
-aqui hablamos de como construimos las imagenes con docker y como las abarajamos y desplegamos con kubernetes.
-vaya uno a saber como
+- Para poder realizar un correcto despliegue de la solucion, previamente habra que iniciar el ambiente de laboratorio y actualizar las credenciales
+en el archivo ~/.aws/credentials asi como tambien descargar el archivo labsuser.pem, renombrarlo a vockey.pem, moverlo dentro de la carperta resources y cambiarle los permisos (chmod 400 vockey.pem).
+
+- Otra cosa importante, tener en cuenta que en el archivo instances.tf en la linea 30 se encuentra el siguiente bloque de codigo que hay que modificar segun el usuario:
+
+```terraform
+  provisioner "file" {
+    source      = "/home/damian/.aws/credentials"
+    destination = "/home/ec2-user/.aws/credentials"
+  }
+  provisioner "file" {
+    source      = "/home/damian/.aws/config"
+    destination = "/home/ec2-user/.aws/config"
+  }
+```
+
+Cambiando el source del archivo de credenciales y del config de la aws cli, esto es porque luego vamos a copiar dichos archivos dentro de la instancia bastion utilizando provisioner "file" para tal fin. 
+
 ## Requisitos para el Despliegue de la APP:
 - Un pc con internet
 - AWS cli 2.11.21
