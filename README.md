@@ -14,13 +14,13 @@ Se divide el proyecto en 3 etapas:
  - Construccion de Imagenes
  - Despliegue de Containers
 
-### Creacion de Infraestructura
+#### Creacion de Infraestructura
 Comenzamos con la creacion de un VPC que tendra dos zonas de disponibilidad que me preoveeran la redundancia para la aplicacion. Estas ZA tendran sus respectivas subnets publicas asociadas a la tabla de ruteo or defecto que me brinda AWS al momento de crear el vpc, para finalmente salir a internet mediante un internet gateway.
 Mediante un ALB (Aplication Load Balancer) podremos acceder a un Bastion, que tendra un script con el deploy de la aplicacion.
 
-### Construccion de Imagenes
+#### Construccion de Imagenes
 
-### Despliegue de (no me la Container)
+#### Despliegue de (no me la Container)
 
 ## Diagrama de Arquitectura:
 ac va el dibujo en drowio
