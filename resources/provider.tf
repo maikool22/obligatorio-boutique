@@ -3,16 +3,3 @@ provider "aws" {
   profile = "default"
 }
 # Se declara proveedor de servicio AWS
-
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-  }
-}
-
-provider "docker" {
-  host = "unix:///home/damian/.docker/desktop/docker.sock"
-}
