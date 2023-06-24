@@ -75,6 +75,9 @@ Cambiando el source del archivo de credenciales y del config de la aws cli, esto
 - Cuenta en aws (se utilizó la cuenta de estudiante)
 
 ## Pruebas de Funcionamiento:
+[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/nTQUwghvy5Q)
+
+
 fotos, pruebas y videos de la app funcionando
 ## Desafios encontrados:
 - El poder separar el problema planteado en distintos problemas mas pequeños para resolver facilmente
