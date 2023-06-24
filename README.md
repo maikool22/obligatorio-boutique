@@ -18,6 +18,21 @@ Se divide el proyecto en 3 etapas:
 Comenzamos con la creacion de un VPC que tendra dos zonas de disponibilidad que me preoveeran la redundancia para la aplicacion. Estas ZA tendran sus respectivas subnets publicas asociadas a la tabla de ruteo or defecto que me brinda AWS al momento de crear el vpc, para finalmente salir a internet mediante un internet gateway.
 Mediante un ALB (Aplication Load Balancer) podremos acceder a un Bastion, que tendra un script con el deploy de la aplicacion.
 
+|      Recurso   |Nombre                         |Archivo                      |
+|----------------|-------------------------------|-----------------------------|
+|ALB             |oblimanual-alb                 |alb.tf                       |
+|ECR             |my_repositories                |ecr.tf                       |
+|EKS CLUSTER     |oblimanual-kluster             |eks.tf                       |
+|EKS NODE-GROUP  |oblimanual-kluster-ng          |eks.tf                       |
+|EC2 INSTANCE    |bastion                        |instances.tf                 |
+|VPC             |oblimanual-vpc                 |network.tf                   |
+|PUBLIC SUBNET 1 |oblimanual-subnet1-publica     |network.tf                   |
+|PUBLIC SUBNET 2 |oblimanual-subnet2-publica     |network.tf                   |
+|INTERNET GATEWAY|oblimanual-ig                  |network.tf                   |
+|ROUTE TABLE     |oblimanual-rt                  |network.tf                   |
+|SECURITY GROUP  |oblimanual-sg                  |security.tf                  |
+
+
 #### Construccion de Imagenes
 
 #### Despliegue de (no me la Container)
