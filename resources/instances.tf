@@ -28,11 +28,11 @@ resource "aws_instance" "bastion" {
   }
 
   provisioner "file" {
-    source      = "/Users/maikool/.aws/credentials"
+    source      = "/home/damian/.aws/credentials"
     destination = "/home/ec2-user/.aws/credentials"
   }
   provisioner "file" {
-    source      = "/Users/maikool/.aws/config"
+    source      = "/home/damian/.aws/config"
     destination = "/home/ec2-user/.aws/config"
   }
   provisioner "remote-exec" {
