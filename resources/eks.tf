@@ -5,7 +5,7 @@ data "aws_iam_role" "LabRole" {
 resource "aws_eks_cluster" "oblimanual-kluster" {
   name     = "oblimanual-kluster"
   role_arn = data.aws_iam_role.LabRole.arn
-  version = 1.26
+  version  = 1.26
   vpc_config {
     subnet_ids = [aws_subnet.oblimanual-subnet1-publica.id, aws_subnet.oblimanual-subnet2-publica.id]
   }

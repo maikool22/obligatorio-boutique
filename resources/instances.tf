@@ -1,8 +1,8 @@
 # Creamos el bastion
 
 resource "aws_instance" "bastion" {
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
+  ami           = var.ami_id
+  instance_type = var.instance_type
   root_block_device {
     volume_size = 16
   }
