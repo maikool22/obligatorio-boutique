@@ -38,7 +38,8 @@ Mediante un ALB (Aplication Load Balancer) podremos acceder a un Bastion, que te
 #### Despliegue de (no me la Container)
 
 ## Diagrama de Arquitectura:
-ac va el dibujo en drowio
+
+![Diagrama](https://github.com/maikool22/obligatorio-boutique/blob/main/docs/img/InfraCloud.drawio.png)
 ## Datos de Infraestructura:
 aca van los tipos de instancia, bloques cidr, firewalling, etc
 ## Servicios de AWS usados:
