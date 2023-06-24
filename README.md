@@ -38,7 +38,8 @@ Mediante un ALB (Aplication Load Balancer) podremos acceder a un Bastion, que te
 #### Despliegue de (no me la Container)
 
 ## Diagrama de Arquitectura:
-ac va el dibujo en drowio
+
+![Diagrama](https://github.com/maikool22/obligatorio-boutique/blob/main/docs/img/InfraCloud.drawio.png)
 ## Datos de Infraestructura:
 aca van los tipos de instancia, bloques cidr, firewalling, etc
 ## Servicios de AWS usados:
@@ -74,6 +75,9 @@ Cambiando el source del archivo de credenciales y del config de la aws cli, esto
 - Cuenta en aws (se utilizó la cuenta de estudiante)
 
 ## Pruebas de Funcionamiento:
+[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/nTQUwghvy5Q)
+
+
 fotos, pruebas y videos de la app funcionando
 ## Desafios encontrados:
 - El poder separar el problema planteado en distintos problemas mas pequeños para resolver facilmente
