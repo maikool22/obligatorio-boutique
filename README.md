@@ -5,7 +5,7 @@
 ## Descripcion del Problema:
 La startup "e-shop Services" ha recibido una ronda de inversión para expandir sus operaciones por todo el mundo, haciendo llegar sus servicios de e-commerce y retail, a todo el continente de América.La competencia actualmente está posicionada en la región a la cual se quiere expandir, pero los inversionistas están presionado para que  "e-shop Services" expanda su marca ya que de esto depende seguir invirtiendo.Se ha contratado a la consultora BitBeat para modernizar y desplegar la arquitectura e infraestructura de su aplicación que actualmente corre en un datacenter on-premise.Una célula de desarrollo trabajó en la implementación del e-commerce basado en una arquitectura de microservicios para correr sobre containers cuyo ciclo de integración continua ya que se encuentra configurado y la solución ya se encuentra disponible para desplegar por parte del equipo de DevOps.
 
-<script async id="asciicast-k5l1Aa7sODNu5j4LItb3j7Kj2" src="https://asciinema.org/a/k5l1Aa7sODNu5j4LItb3j7Kj2.js"></script>
+[![asciicast](https://asciinema.org/a/k5l1Aa7sODNu5j4LItb3j7Kj2.svg)](https://asciinema.org/a/k5l1Aa7sODNu5j4LItb3j7Kj2)
 
 ## Descripción de la Solucion:
 El proyecto de la Tienda Online es un sistema de comercio electrónico que permite a los usuarios comprar productos en línea. Proporciona una plataforma para que los clientes puedan navegar por los productos, agregarlos al carrito de compras y realizar pedidos.
