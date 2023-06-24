@@ -18,7 +18,8 @@ ECR_ID=$(aws ecr describe-repositories --repository-names cartservice --query 'r
 
 # Generamos una variable indicando la subcarpeta donde están los datos para la construcción y despliegue de las imágenes.
 SRC_WORKDIR="/tmp/obli_deploy/src/"
-sudo chmod -R 770 /tmp/obli_deploy
+sudo chown -R ec2-user:ec2-user /tmp/obli_deploy/
+sudo chmod -R 770 $SRC_WORKDIR
 
 
 # Definimos una variable de tipo lista con los nombres de módulos para ser recorridos más adelante con bucles for.
@@ -87,7 +88,7 @@ aws eks update-kubeconfig --region us-east-1 --name oblimanual-kluster
 for service in "${MICROSERVICES[@]}"
 do
   echo "Cambio el tag en el Manifest de: $service..." 
-  cd "$SRC_WORKDIR/$service/deployment"
+  cd "$SRC_WORKDIR$service/deployment"
   aux=$(aws ecr describe-repositories --repository-names $service --query 'repositories[].repositoryUri' --output text)
   echo $aux
   sed -i "s|<IMAGE:TAG>|$aux:latest|g" kubernetes-manifests.yaml  
@@ -98,7 +99,7 @@ done
 for service in "${MICROSERVICES[@]}"
 do
   echo "Deployando: $service..." 
-  cd "$SRC_WORKDIR/$service/deployment"  
+  cd "$SRC_WORKDIR$service/deployment"  
   kubectl create -f kubernetes-manifests.yaml 
 
 done
