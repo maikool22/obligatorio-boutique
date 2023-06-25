@@ -75,8 +75,7 @@ Cambiando el source del archivo de credenciales y del config de la aws cli, esto
 - Cuenta en aws (se utilizó la cuenta de estudiante)
 
 ## Pruebas de Funcionamiento:
-[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/nTQUwghvy5Q)
-
+[![asciicast](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf.svg)](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf)
 
 fotos, pruebas y videos de la app funcionando
 ## Desafios encontrados:
