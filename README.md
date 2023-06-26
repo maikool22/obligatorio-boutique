@@ -12,7 +12,7 @@ El proyecto de la Tienda Online es un sistema de comercio electrónico que permi
 
 ## Dinamica de Trabajo:
 
-Primeramente comenzamos con la creacion de un repositorio publico en GIT, excusivo para este trabajo. Una vez los integrandes del equipo clonan el repo, lo sincronizamos con Visual Studio code y comenzamos a trabajar:
+Primeramente comenzamos con la creacion de un repositorio publico en GIT, excusivo para este trabajo https://github.com/maikool22/obligatorio-boutique. Una vez los integrandes del equipo clonan el repo, lo sincronizamos con Visual Studio code y comenzamos a trabajar:
 
 El proyecto lo vamos a dividir en 2 etapas:
  - Creacion de Infraestructura mediante Terraform
