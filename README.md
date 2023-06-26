@@ -22,7 +22,8 @@ Mediante un ALB (Aplication Load Balancer) podremos acceder a un Bastion, que te
 
 #### Script automatizador
 
-Como mencionabamos anteriormente, nuestro script estara alojado en ina instancia llamada bastion, que es el que basicamente se encargara de la construcccion de las imagenes mediante Docker y el despliegue de los contenedores mediante KubCtl.
+Como mencionabamos anteriormente, nuestro script estara alojado en una instancia llamada bastion, que es el que basicamente se encargara de la construcccion de las imagenes mediante Docker y el despliegue de los contenedores mediante KubCtl.
+
 En el mismo se puede apreciar primeramente la declaracion de Variables:
 - ECR_ID: Esta variable me servira para obtener el URI del repo de ECR y me servira para pushear las imagenes una vez creadas.
 - SRC_WORKDIR: Indicamos donde iran guardados los datos, damos permisos al usuario ec2 y permisos de carpeta necesarios para el buen funcionamiento del script. (Directirio se crea mediante un provisioner).
@@ -30,7 +31,7 @@ En el mismo se puede apreciar primeramente la declaracion de Variables:
 
 Seguidamente pasamos a instalar Docker, Kubectl (actualizacionde de paquetes y demas se hacen mediante provisioners) y comenzamos a trabajar con nuestro primer bucle que recorrera la lista de PODS, contrsutruyendo, tagueando y pusheando las imagenes a la registry.
 
-Acto seguido registramos Kubernetes contra nuestro clúster previamente creado en Terraform y volvemos a recorrer la lista antes mencionada, pero esta vez recorreremos los manifiestos de cada POD, reemplazamos "IMAGE" por la URL de la imagen y "TAG" por "latest".
+Acto seguido registramos Kubernetes contra nuestro clúster previamente creado en Terraform y volvemos a recorrer la lista antes mencionada, pero esta vez recorreremos los manifiestos de cada POD, reemplazando "IMAGE" por la URL de la imagen y "TAG" por "latest".
 
 Finalmente haremos el despliegue recorriendo por ultima vez la lista MICROSERVICES y ejecutando Kubectl para cada POD.
 
