@@ -14,10 +14,9 @@ El proyecto de la Tienda Online es un sistema de comercio electrónico que permi
 
 Primeramente comenzamos con la creacion de un repositorio publico en GIT, excusivo para este trabajo. Una vez los integrandes del equipo clonan el repo, lo sincronizamos con Visual Studio code y comenzamos a trabajar:
 
-El proyecto lo vamos a dividir en 3 etapas:
+El proyecto lo vamos a dividir en 2 etapas:
  - Creacion de Infraestructura mediante Terraform
  - Script Automatizador 
- - Despliegue de Aplicacion
 
 #### Creacion de Infraestructura
 
@@ -38,14 +37,6 @@ Seguidamente pasamos a instalar Docker, Kubectl (actualizacionde de paquetes y d
 Acto seguido registramos Kubernetes contra nuestro clúster previamente creado en Terraform y volvemos a recorrer la lista antes mencionada, pero esta vez recorreremos los manifiestos de cada POD, reemplazando "IMAGE" por la URL de la imagen y "TAG" por "latest".
 
 Finalmente haremos el despliegue recorriendo por ultima vez la lista MICROSERVICES y ejecutando Kubectl para cada POD.
-
-#### Despliegue de Aplicacion
-
-Como se menciona anteriormente, se ultiliza terraform como base para la construccion de una infra, esta tendra una instancia llamada bastion que contiene un script automatizador y que me permitira el despliegue de la misma.
-Para ello, teniendo los requisitos necesarios para ejecutarla, bastara con hacer el comando:
-
-- terraform apply -var-file=var.tfvars
-
 
 ## Diagrama de Arquitectura:
 
@@ -69,8 +60,9 @@ Para ello, teniendo los requisitos necesarios para ejecutarla, bastara con hacer
 
 
 ## Despliegue de la APP:
+
 - Para poder realizar un correcto despliegue de la solucion, previamente habra que iniciar el ambiente de laboratorio y actualizar las credenciales
-en el archivo ~/.aws/credentials asi como tambien descargar el archivo labsuser.pem, renombrarlo a vockey.pem, moverlo dentro de la carperta resources y cambiarle los permisos (chmod 400 vockey.pem).
+En el archivo ~/.aws/credentials asi como tambien descargar el archivo vockey.pem, moverlo dentro de la carperta resources y cambiarle los permisos (chmod 400 vockey.pem).
 
 - Otra cosa importante, tener en cuenta que en el archivo instances.tf en la linea 30 se encuentra el siguiente bloque de codigo que hay que modificar segun el usuario:
 
@@ -86,6 +78,9 @@ en el archivo ~/.aws/credentials asi como tambien descargar el archivo labsuser.
 ```
 
 Cambiando el source del archivo de credenciales y del config de la aws cli, esto es porque luego vamos a copiar dichos archivos dentro de la instancia bastion utilizando provisioner "file" para tal fin. 
+
+Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
+*terraform apply -var-file=var.tfvars*
 
 ## Requisitos para el Despliegue de la APP:
 - Un pc con internet
@@ -106,8 +101,7 @@ fotos, pruebas y videos de la app funcionando
 ## Oportunidades de Mejora:
 - Evitar lo mas posible la dependencia de provisioners
 - Utilizar provider de Kubernets para la parte del build.
-- Utilizar modulos, por falta de tiempo no se pudo implementar.
-- 
+- Tratar de que el codigo sea mas reciclable, utilizacion de modulos y mas variables.
 ## Declaracion de Autoria:
 Por la siguiente, Maikool Rodriguez  y Damián Sandoval con números de estudiante 253225  y 205106 respectivamente, estudiantes de la carrera “Analista en Infraestructura Informática” en relación con el trabajo obligatorio de fin de semestre presentado para su evaluación y defensa, declaramos que asumimos la autoría de dicho documento entendida en el sentido de que no se han utilizado fuentes sin citarlas debidamente.
 
