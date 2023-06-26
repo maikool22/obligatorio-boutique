@@ -103,6 +103,7 @@ Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
 - Evitar lo mas posible la dependencia de provisioners
 - Utilizar provider de Kubernets para la parte del build.
 - Tratar de que el codigo sea mas reciclable, utilizacion de modulos y mas variables.
+- Lograr la persistencia y sincronizacion del Redis
 ## Declaracion de Autoria:
 Por la siguiente, Maikool Rodriguez  y Damián Sandoval con números de estudiante 253225  y 205106 respectivamente, estudiantes de la carrera “Analista en Infraestructura Informática” en relación con el trabajo obligatorio de fin de semestre presentado para su evaluación y defensa, declaramos que asumimos la autoría de dicho documento entendida en el sentido de que no se han utilizado fuentes sin citarlas debidamente.
 
