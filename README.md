@@ -92,7 +92,7 @@ Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
 ## Pruebas de Funcionamiento:
 [![asciicast](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf.svg)](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf)
 
-fotos, pruebas y videos de la app funcionando
+
 ## Desafios encontrados:
 - El poder separar el problema planteado en distintos problemas mas pequeños para resolver facilmente
 - El manejo de las variables y como debiamos utilizarlas en nuestra solucion.
