@@ -7,7 +7,6 @@ La startup "e-shop Services" ha recibido una ronda de inversión para expandir 
 
 # Descripción de la Solucion:
 El proyecto de la Tienda Online es un sistema de comercio electrónico que permite a los usuarios comprar productos en línea. Proporciona una plataforma para que los clientes puedan navegar por los productos, agregarlos al carrito de compras y realizar pedidos. Seguidamente mostraremos como llevamos a cabo la modernizacion y despliegue de la arquitectura e infraestructura de la aplicacion, automatizandola de forma tal que mediante el comando de Terraform "terraform apply" se pueda desplegar.
-
 ## Dinamica de Trabajo:
 Se divide el proyecto en 3 etapas:
  - Creacion de Infraestructura
