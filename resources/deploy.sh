@@ -52,16 +52,16 @@ sudo chmod +x /usr/local/bin/kubectl
 # Con este bucle for, recorremos los diferentes directorios "src" de cada módulo
 # realizando el build de la imagen correspondiente.
 
-for service in "${MICROSERVICES[@]}"
-do
-  echo "Haciendo el build para: $service..."
-  if [[ "$service" == "cartservice" ]]; then
-    cd "$SRC_WORKDIR$service/src" || continue
-  else
-    cd "$SRC_WORKDIR$service" || continue
-  fi
-  docker build -t "$service" .
-done
+# for service in "${MICROSERVICES[@]}"
+# do
+#   echo "Haciendo el build para: $service..."
+#   if [[ "$service" == "cartservice" ]]; then
+#     cd "$SRC_WORKDIR$service/src" || continue
+#   else
+#     cd "$SRC_WORKDIR$service" || continue
+#   fi
+#   docker build -t "$service" .
+# done
 
 # Ahora nos logueamos al registry con docker
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
