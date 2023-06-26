@@ -8,18 +8,27 @@ La startup "e-shop Services" ha recibido una ronda de inversión para expandir 
 # Descripción de la Solucion:
 El proyecto de la Tienda Online es un sistema de comercio electrónico que permite a los usuarios comprar productos en línea. Proporciona una plataforma para que los clientes puedan navegar por los productos, agregarlos al carrito de compras y realizar pedidos. Seguidamente mostraremos como llevamos a cabo la modernizacion y despliegue de la arquitectura e infraestructura de la aplicacion, automatizandola de forma tal que mediante el comando de Terraform "terraform apply" se pueda desplegar.
 ## Dinamica de Trabajo:
-Se divide el proyecto en 3 etapas:
- - Creacion de Infraestructura
- - Construccion de Imagenes
- - Despliegue de Containers
+Primeramente comenzamos con la creacion de un repositorio publico en GIT, excusivo para este trabajo. Una vez los integrandes del equipo clonan el repo, lo sincronizamos con Visual Studio code y comenzamos a trabajar:
+
+El proyecto lo vamos a dividir en 3 etapas:
+ - Creacion de Infraestructura mediante Terraform
+ - Script Automatizador 
+ - Despliegue de Aplicacion
 
 #### Creacion de Infraestructura
-Comenzamos con la creacion de un VPC que tendra dos zonas de disponibilidad que me preoveeran la redundancia para la aplicacion. Estas ZA tendran sus respectivas subnets publicas asociadas a la tabla de ruteo or defecto que me brinda AWS al momento de crear el vpc, para finalmente salir a internet mediante un internet gateway.
+Comenzamos con la creacion de un VPC que tendra dos zonas de disponibilidad que me preoveeran la redundancia para la aplicacion. Estas ZA tendran sus respectivas subnets publicas asociadas a la tabla de ruteo por defecto que me brinda AWS al momento de crear el vpc, para finalmente salir a internet mediante un internet gateway.
 Mediante un ALB (Aplication Load Balancer) podremos acceder a un Bastion, que tendra un script con el deploy de la aplicacion.
 
-#### Construccion de Imagenes
+#### Script automatizador
+Como mencionabamos anteriormente, nuestro script estara alojado en ina instancia llamada bastion, que es el que basicamente se encargara de la construcccion de las imagenes mediante Docker y el despliegue de los contenedores mediante KubCtl.
+En el mismo se puede apreciar primeramente la declaracion de Variables:
+- ECR_ID: Esta variable me servira para obtener el URI del repo de ECR y me servira para pushear las imagenes una vez creadas.
+- SRC_WORKDIR: Indicamos donde iran guardados los datos, damos permisos al usuario ec2 y permisos de carpeta necesarios para el buen funcionamiento del script. (Directirio se crea mediante un provisioner).
+- MICROSERVICES: Esta es una lista con los nombres de los PODS.
 
-#### Despliegue de (no me la Container)
+
+
+#### Despliegue de Aplicacion
 
 ## Diagrama de Arquitectura:
 
