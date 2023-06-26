@@ -98,6 +98,7 @@ Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
 - El manejo de las variables y como debiamos utilizarlas en nuestra solucion.
 - Comprension basica de como funciona Docker y Kubernetes.
 - La ami que oficia de bastion a menudo se quedaba corta de recursos para las tareas.
+- Persistencia y sincronizacion de Redis en ambas zonas de disponibilidad.
 ## Oportunidades de Mejora:
 - Evitar lo mas posible la dependencia de provisioners
 - Utilizar provider de Kubernets para la parte del build.
