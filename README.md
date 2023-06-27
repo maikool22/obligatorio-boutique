@@ -87,7 +87,7 @@ En el archivo ~/.aws/credentials asi como tambien descargar el archivo vockey.pe
 Cambiando el source del archivo de credenciales y del config de la aws cli, esto es porque luego vamos a copiar dichos archivos dentro de la instancia bastion utilizando provisioner "file" para tal fin. 
 
 Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
-``` bash terraform apply -var-file=var.tfvars```
+```bash terraform apply -var-file=var.tfvars```
 
 ## Requisitos para el Despliegue de la APP:
 - Un pc con internet
