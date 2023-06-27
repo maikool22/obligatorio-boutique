@@ -8,24 +8,31 @@ La startup "e-shop Services" ha recibido una ronda de inversión para expandir 
 
 # Descripción de la Solucion:
 
-El proyecto de la Tienda Online es un sistema de comercio electrónico que permite a los usuarios comprar productos en línea. Proporciona una plataforma para que los clientes puedan navegar por los productos, agregarlos al carrito de compras y realizar pedidos. Seguidamente mostraremos cómo llevamos a cabo la modernización y despliegue de la arquitectura e infraestructura de la aplicación, automatizando de forma tal que mediante el comando de Terraform "terraform apply" se pueda desplegar.
+El proyecto de la Tienda Online es un sistema de comercio electrónico que permite a los usuarios comprar productos en línea. Proporciona una plataforma para que los clientes puedan navegar por los productos, agregarlos al carrito de compras y realizar pedidos. A continuación mostraremos cómo llevamos a cabo la modernización y despliegue de la nueva arquitectura e infraestructura de la aplicación, automatizando de forma tal que mediante una herramienta de IAC (Infaestrectura como Código) tal como lo es Terraform se pueda desplegar facilmente la solución.
 
 ## Dinamica de Trabajo:
 
-Primeramente comenzamos con la creación de un repositorio público en GIT, exclusivo para este trabajo https://github.com/maikool22/obligatorio-boutique. Una vez los integrantes del equipo clonan el repo, lo sincronizamos con Visual Studio Code y comenzamos a trabajar:
+Comenzamos con la creación de un repositorio público en GIT exclusivo para este trabajo https://github.com/maikool22/obligatorio-boutique. Una vez los integrantes del equipo clonaron dicho repo. Se procede a configurar los ambientes con Visual Studio Code, se modifica el archivo .gitignore ya proporcionado por github, de forma de albergar los archivos que no se van a subir al repo (temoporales del SO, archivos .terraform y principalmente llaves públicas de AWS). Luego de esto se comienza a trabajar.
 
 El proyecto lo vamos a dividir en 2 etapas:
  - Creación de Infraestructura mediante Terraform
- - Script Automatizador 
+ - Automatizacion del despliegue
 
 #### Creacion de Infraestructura
 
-Comenzamos con la creación de un VPC que tendrá dos zonas de disponibilidad que me proveerán la redundancia para la aplicación. Estas ZA tendrán sus respectivas subnets públicas asociadas a la tabla de ruteo por defecto que me brinda AWS al momento de crear el vpc, para finalmente salir a internet mediante un internet gateway.
-Mediante un ALB (Application Load Balancer) podremos acceder a un Bastión, que tendrá un script con el deploy de la aplicación.
+Comenzamos con la creación de un VPC, el cual tendrá dos zonas de disponibilidad que nos proveerán la redundancia para la aplicación. Estas ZA tendrán sus respectivas subnets públicas asociadas a una tabla previamente creada, para finalmente salir a internet mediante un internet gateway.
+Luego de esto se genera una instancia EC2 la cual va a servir de bastion para poder realizar el resto de las tareas para dejar el sitio funcionando.
 
-#### Script automatizador
+#### Automatizacion del despliegue
 
-Como mencionamos anteriormente, nuestro script estará alojado en una instancia llamada bastion, que es el que básicamente se encargará de la construcción de las imágenes mediante Docker y el despliegue de los contenedores mediante KubeCtl.
+Para tal fin se opta por crear un shell script el cual se encargara de:
+ - Instalar dependencias y recursos extras necesarios para ejecutar Docker y Kubernetes en el bastion.
+ - Realizar un build de cada uno de los servicios solicitados.
+ - Taggear cada imagen y subirla con su correspondiente repositorio en ECS
+ - Modificar cada manifiesto de kubernetes para coinicidir con la imagen publicada
+ - Desplesgar los manifiestos de cada modulo mediante la CLI de Kubernetes.
+
+Este script sera copiado y ejecutado mediante provisioners de terraform
 
 Al principio se puede apreciar la declaración de Variables:
 - ECR_ID: Esta variable nos servirá para obtener el URI del repo de ECR, para después pushear las imágenes una vez creadas.
