@@ -90,8 +90,10 @@ Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
 - Cuenta en aws (se utilizó la cuenta de estudiante)
 
 ## Pruebas de Funcionamiento:
+**Compilacion del Programa:**
 [![asciicast](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf.svg)](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf)
 
+**Muestra de Funcionamiento:**
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=fCJZ-_2CRHY" target="_blank">
  <img src="http://img.youtube.com/vi/fCJZ-_2CRHY/mqdefault.jpg" alt="Prueba de Funcionamiento" width="480" height="240" border="10" />
 </a>
