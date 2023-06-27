@@ -92,10 +92,8 @@ Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
 ## Pruebas de Funcionamiento:
 [![asciicast](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf.svg)](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf)
 
-[![Watch the video](https://img.youtube.com/vi/fCJZ-_2CRHY/default.jpg)](https://youtu.be/fCJZ-_2CRHY)
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=nTQUwghvy5Q" target="_blank">
- <img src="http://img.youtube.com/vi/nTQUwghvy5Q/mqdefault.jpg" alt="Watch the video" width="240" height="180" border="10" />
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=fCJZ-_2CRHY" target="_blank">
+ <img src="http://img.youtube.com/vi/fCJZ-_2CRHY/mqdefault.jpg" alt="Prueba de Funcionamiento" width="480" height="240" border="10" />
 </a>
 
 ## Desafios encontrados:
