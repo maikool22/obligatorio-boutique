@@ -80,7 +80,7 @@ En el archivo ~/.aws/credentials asi como tambien descargar el archivo vockey.pe
 Cambiando el source del archivo de credenciales y del config de la aws cli, esto es porque luego vamos a copiar dichos archivos dentro de la instancia bastion utilizando provisioner "file" para tal fin. 
 
 Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
-*terraform apply -var-file=var.tfvars*
+**terraform apply -var-file=var.tfvars**
 
 ## Requisitos para el Despliegue de la APP:
 - Un pc con internet
@@ -92,6 +92,9 @@ Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
 ## Pruebas de Funcionamiento:
 [![asciicast](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf.svg)](https://asciinema.org/a/XGVEeSSxRbjhWzcpJKe8Uuguf)
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=fCJZ-_2CRHY" target="_blank">
+ <img src="http://img.youtube.com/vi/fCJZ-_2CRHY/mqdefault.jpg" alt="Prueba de Funcionamiento" width="480" height="240" border="10" />
+</a>
 
 ## Desafios encontrados:
 - El poder separar el problema planteado en distintos problemas mas pequeños para resolver facilmente
