@@ -51,19 +51,19 @@ Finalmente haremos el despliegue recorriendo por última vez la lista MICROSERVI
 
 ## Datos de Infra y Servicios de AWS usados:
 
-|      Recurso   |Nombre                         |Archivo                      |
-|----------------|-------------------------------|-----------------------------|
-|ALB             |oblimanual-alb                 |alb.tf                       |
-|ECR             |my_repositories                |ecr.tf                       |
-|EKS CLUSTER     |oblimanual-kluster             |eks.tf                       |
-|EKS NODE-GROUP  |oblimanual-kluster-ng          |eks.tf                       |
-|EC2 INSTANCE    |bastion                        |instances.tf                 |
-|VPC             |oblimanual-vpc                 |network.tf                   |
-|PUBLIC SUBNET 1 |oblimanual-subnet1-publica     |network.tf                   |
-|PUBLIC SUBNET 2 |oblimanual-subnet2-publica     |network.tf                   |
-|INTERNET GATEWAY|oblimanual-ig                  |network.tf                   |
-|ROUTE TABLE     |oblimanual-rt                  |network.tf                   |
-|SECURITY GROUP  |oblimanual-sg                  |security.tf                  |
+|      Recurso   |Nombre                         |Archivo                      |Valor          |
+|----------------|-------------------------------|-----------------------------|---------------|
+|ALB             |oblimanual-alb                 |alb.tf                       |               |
+|ECR             |my_repositories                |ecr.tf                       |               |
+|EKS CLUSTER     |oblimanual-kluster             |eks.tf                       |               |
+|EKS NODE-GROUP  |oblimanual-kluster-ng          |eks.tf                       |               |
+|EC2 INSTANCE    |bastion                        |instances.tf                 |               |
+|VPC             |oblimanual-vpc                 |network.tf                   |10.0.0.0/16    |
+|PUBLIC SUBNET 1 |oblimanual-subnet1-publica     |network.tf                   |10.0.1.0/24    |
+|PUBLIC SUBNET 2 |oblimanual-subnet2-publica     |network.tf                   |10.0.2.0/24    |
+|INTERNET GATEWAY|oblimanual-ig                  |network.tf                   |               |
+|ROUTE TABLE     |oblimanual-rt                  |network.tf                   |               |
+|SECURITY GROUP  |oblimanual-sg                  |security.tf                  |               |
 
 
 ## Despliegue de la APP:
@@ -87,7 +87,7 @@ En el archivo ~/.aws/credentials asi como tambien descargar el archivo vockey.pe
 Cambiando el source del archivo de credenciales y del config de la aws cli, esto es porque luego vamos a copiar dichos archivos dentro de la instancia bastion utilizando provisioner "file" para tal fin. 
 
 Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
-**terraform apply -var-file=var.tfvars**
+``` bash terraform apply -var-file=var.tfvars```
 
 ## Requisitos para el Despliegue de la APP:
 - Un pc con internet
