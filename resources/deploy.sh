@@ -6,13 +6,11 @@
 # y las mismas son publicadas en el registro ya creado en código de Terraform.
 # Por último, se realiza el despliegue mediante kubectl.
 
-
 # Variables:
 
 # Creo una variable con el ID del repositorio URI.
 # Dado que el comando "aws ecr describe-repositories" devuelve el nombre completo del repositorio,
 # y solo necesitamos la URL sin el nombre del módulo, optamos por utilizar "cut" para obtener solo el ID.
-
 
 ECR_ID=$(aws ecr describe-repositories --repository-names cartservice --query 'repositories[].repositoryUri' --output text | cut -d "/" -f1)
 
@@ -51,17 +49,6 @@ sudo chmod +x /usr/local/bin/kubectl
 
 # Con este bucle for, recorremos los diferentes directorios "src" de cada módulo
 # realizando el build de la imagen correspondiente.
-
-# for service in "${MICROSERVICES[@]}"
-# do
-#   echo "Haciendo el build para: $service..."
-#   if [[ "$service" == "cartservice" ]]; then
-#     cd "$SRC_WORKDIR$service/src" || continue
-#   else
-#     cd "$SRC_WORKDIR$service" || continue
-#   fi
-#   docker build -t "$service" .
-# done
 
 # Ahora nos logueamos al registry con docker
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
