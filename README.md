@@ -8,31 +8,24 @@ La startup "e-shop Services" ha recibido una ronda de inversión para expandir 
 
 # Descripción de la Solucion:
 
-El proyecto de la Tienda Online es un sistema de comercio electrónico que permite a los usuarios comprar productos en línea. Proporciona una plataforma para que los clientes puedan navegar por los productos, agregarlos al carrito de compras y realizar pedidos. A continuación mostraremos cómo llevamos a cabo la modernización y despliegue de la nueva arquitectura e infraestructura de la aplicación, automatizando de forma tal que mediante una herramienta de IAC (Infaestrectura como Código) tal como lo es Terraform se pueda desplegar facilmente la solución.
+El proyecto de la Tienda Online es un sistema de comercio electrónico que permite a los usuarios comprar productos en línea. Proporciona una plataforma para que los clientes puedan navegar por los productos, agregarlos al carrito de compras y realizar pedidos. Seguidamente mostraremos cómo llevamos a cabo la modernización y despliegue de la arquitectura e infraestructura de la aplicación, automatizando de forma tal que mediante el comando de Terraform "terraform apply" se pueda desplegar.
 
 ## Dinamica de Trabajo:
 
-Comenzamos con la creación de un repositorio público en GIT exclusivo para este trabajo https://github.com/maikool22/obligatorio-boutique. Una vez los integrantes del equipo clonaron dicho repo. Se procede a configurar los ambientes con Visual Studio Code, se modifica el archivo .gitignore ya proporcionado por github, de forma de albergar los archivos que no se van a subir al repo (temoporales del SO, archivos .terraform y principalmente llaves públicas de AWS). Luego de esto se comienza a trabajar.
+Primeramente comenzamos con la creación de un repositorio público en GIT, exclusivo para este trabajo https://github.com/maikool22/obligatorio-boutique. Una vez los integrantes del equipo clonan el repo, lo sincronizamos con Visual Studio Code y comenzamos a trabajar:
 
 El proyecto lo vamos a dividir en 2 etapas:
  - Creación de Infraestructura mediante Terraform
- - Automatizacion del despliegue
+ - Script Automatizador 
 
 #### Creacion de Infraestructura
 
-Comenzamos con la creación de un VPC, el cual tendrá dos zonas de disponibilidad que nos proveerán la redundancia para la aplicación. Estas ZA tendrán sus respectivas subnets públicas asociadas a una tabla previamente creada, para finalmente salir a internet mediante un internet gateway.
-Luego de esto se genera una instancia EC2 la cual va a servir de bastion para poder realizar el resto de las tareas para dejar el sitio funcionando.
+Comenzamos con la creación de un VPC que tendrá dos zonas de disponibilidad que me proveerán la redundancia para la aplicación. Estas ZA tendrán sus respectivas subnets públicas asociadas a la tabla de ruteo por defecto que me brinda AWS al momento de crear el vpc, para finalmente salir a internet mediante un internet gateway.
+Mediante un ALB (Application Load Balancer) podremos acceder a un Bastión, que tendrá un script con el deploy de la aplicación.
 
-#### Automatizacion del despliegue
+#### Script automatizador
 
-Para tal fin se opta por crear un shell script el cual se encargara de:
- - Instalar dependencias y recursos extras necesarios para ejecutar Docker y Kubernetes en el bastion.
- - Realizar un build de cada uno de los servicios solicitados.
- - Taggear cada imagen y subirla con su correspondiente repositorio en ECS
- - Modificar cada manifiesto de kubernetes para coinicidir con la imagen publicada
- - Desplesgar los manifiestos de cada modulo mediante la CLI de Kubernetes.
-
-Este script sera copiado y ejecutado mediante provisioners de terraform
+Como mencionamos anteriormente, nuestro script estará alojado en una instancia llamada bastion, que es el que básicamente se encargará de la construcción de las imágenes mediante Docker y el despliegue de los contenedores mediante KubeCtl.
 
 Al principio se puede apreciar la declaración de Variables:
 - ECR_ID: Esta variable nos servirá para obtener el URI del repo de ECR, para después pushear las imágenes una vez creadas.
@@ -51,19 +44,19 @@ Finalmente haremos el despliegue recorriendo por última vez la lista MICROSERVI
 
 ## Datos de Infra y Servicios de AWS usados:
 
-|      Recurso   |Nombre                         |Archivo                      |Valor          |
-|----------------|-------------------------------|-----------------------------|---------------|
-|ALB             |oblimanual-alb                 |alb.tf                       |               |
-|ECR             |my_repositories                |ecr.tf                       |               |
-|EKS CLUSTER     |oblimanual-kluster             |eks.tf                       |               |
-|EKS NODE-GROUP  |oblimanual-kluster-ng          |eks.tf                       |               |
-|EC2 INSTANCE    |bastion                        |instances.tf                 |               |
-|VPC             |oblimanual-vpc                 |network.tf                   |10.0.0.0/16    |
-|PUBLIC SUBNET 1 |oblimanual-subnet1-publica     |network.tf                   |10.0.1.0/24    |
-|PUBLIC SUBNET 2 |oblimanual-subnet2-publica     |network.tf                   |10.0.2.0/24    |
-|INTERNET GATEWAY|oblimanual-ig                  |network.tf                   |               |
-|ROUTE TABLE     |oblimanual-rt                  |network.tf                   |               |
-|SECURITY GROUP  |oblimanual-sg                  |security.tf                  |               |
+|      Recurso   |Nombre                         |Archivo                      |
+|----------------|-------------------------------|-----------------------------|
+|ALB             |oblimanual-alb                 |alb.tf                       |
+|ECR             |my_repositories                |ecr.tf                       |
+|EKS CLUSTER     |oblimanual-kluster             |eks.tf                       |
+|EKS NODE-GROUP  |oblimanual-kluster-ng          |eks.tf                       |
+|EC2 INSTANCE    |bastion                        |instances.tf                 |
+|VPC             |oblimanual-vpc                 |network.tf                   |
+|PUBLIC SUBNET 1 |oblimanual-subnet1-publica     |network.tf                   |
+|PUBLIC SUBNET 2 |oblimanual-subnet2-publica     |network.tf                   |
+|INTERNET GATEWAY|oblimanual-ig                  |network.tf                   |
+|ROUTE TABLE     |oblimanual-rt                  |network.tf                   |
+|SECURITY GROUP  |oblimanual-sg                  |security.tf                  |
 
 
 ## Despliegue de la APP:
@@ -87,9 +80,7 @@ En el archivo ~/.aws/credentials asi como tambien descargar el archivo vockey.pe
 Cambiando el source del archivo de credenciales y del config de la aws cli, esto es porque luego vamos a copiar dichos archivos dentro de la instancia bastion utilizando provisioner "file" para tal fin. 
 
 Finalmente, una vez completados los pasos anteriores, aplicamos el comando:
-```shell
-terraform apply -var-file=var.tfvars
-```
+**terraform apply -var-file=var.tfvars**
 
 ## Requisitos para el Despliegue de la APP:
 - Un pc con internet

@@ -28,11 +28,11 @@ resource "aws_instance" "bastion" {
   }
 
   provisioner "file" {
-    source      = "/Users/maikool/.aws/credentials"
+    source      = "/home/damian/.aws/credentials"
     destination = "/home/ec2-user/.aws/credentials"
   }
   provisioner "file" {
-    source      = "/Users/maikool/.aws/config"
+    source      = "/home/damian/.aws/config"
     destination = "/home/ec2-user/.aws/config"
   }
   provisioner "remote-exec" {
@@ -41,7 +41,7 @@ resource "aws_instance" "bastion" {
       "sudo dnf -y upgrade --releasever=2023.0.20230614",  #Actualizamos el core de la ami de linux     
       "sudo yum install -y git",                           # Instalamos git      
       "sudo mkdir /tmp/obli_deploy/",                      #creamos carpeta temporal en el bastion
-      "sudo git clone https://github.com/maikool22/obligatorio-boutique.git /tmp/obli_deploy/", # clonamos el repo que vamos a usar
+      "sudo git clone https://github.com/damiansandoval/obligatorio-boutique --branch testing /tmp/obli_deploy/", # clonamos el repo que vamos a usar
       "cd /tmp/obli_deploy/resources",                     #nos cambiamos al workdir
       "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",# le doy permisos de ejecucion al script
       "sudo chmod -R 777 /tmp/obli_deploy/", # le doy permisos a toda la carpeta del deploy
