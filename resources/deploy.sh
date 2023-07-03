@@ -8,6 +8,9 @@
 
 # Variables:
 
+# Me traigo el id de la instancia que lo voy a precisar mas adelante:
+INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=bastion" --query "Reservations[].Instances[].InstanceId" --output text)
+
 # Creo una variable con el ID del repositorio URI.
 # Dado que el comando "aws ecr describe-repositories" devuelve el nombre completo del repositorio,
 # y solo necesitamos la URL sin el nombre del módulo, optamos por utilizar "cut" para obtener solo el ID.
@@ -16,9 +19,10 @@ ECR_ID=$(aws ecr describe-repositories --repository-names cartservice --query 'r
 
 # Generamos una variable indicando la subcarpeta donde están los datos para la construcción y despliegue de las imágenes.
 SRC_WORKDIR="/tmp/obli_deploy/src/"
-sudo chown -R ec2-user:ec2-user /tmp/obli_deploy/
-sudo chmod -R 770 $SRC_WORKDIR
 
+##Me traigo la variable del ID del volumen que me creo en el terraform de kubernetes, esto para evitar que el attach no se haga cuando se levanta la maquina
+
+VOLUME_ID=$(aws ec2 describe-volumes --filters Name=tag:Name,Values=oblimanual-redis-ebs --query "Volumes[*].{ID:VolumeId}" --output text)
 
 # Definimos una variable de tipo lista con los nombres de módulos para ser recorridos más adelante con bucles for.
 
@@ -37,21 +41,9 @@ MICROSERVICES=(
   "shippingservice"
 )
 
-
-# MICROSERVICES=(
-#   "adservice"
-#   "cartservice"
-#   "checkoutservice"
-#   "currencyservice"
-#   "emailservice"
-#   "frontend"
-#   "loadgenerator"
-#   "paymentservice"
-#   "productcatalogservice"
-#   "recommendationservice"  
-#   "shippingservice"
-# )
-
+# Permisos a carpetas de trabajo
+sudo chown -R ec2-user:ec2-user /tmp/obli_deploy/
+sudo chmod -R 770 $SRC_WORKDIR
 
 # Instalamos Docker
 sudo dnf install telnet docker -y 
@@ -99,28 +91,20 @@ do
   sed -i "s|<IMAGE:TAG>|$aux:latest|g" kubernetes-manifests.yaml  
 done
 
-
-
-# sleep 60s
-
-
 # #### Como no se como formatear una ebs en terraform lo tengo que hacer aca....
+
+#Voy a attachear mi volumen ebs en mi instancia:
+
+aws ec2 attach-volume --volume-id $VOLUME_ID --instance-id $INSTANCE_ID --device /dev/xvdf
+
 # #### Esto para formatear el ebs que luego voy a utilizar con redis-pv
 sudo pvcreate /dev/xvdf
 sudo vgcreate redis-vg /dev/xvdf
 sudo lvcreate -l 100%FREE -n redis-lv redis-vg
 sudo mkfs.ext4 /dev/redis-vg/redis-lv
+sudo mkdir /data
 sudo mount /dev/redis-vg/redis-lv /data
 
-# #### Forma muy rustica de sacar el volume ID
-# VOLUME_ID=$(aws ec2 describe-volumes --filters Name=attachment.device,Values=/dev/xvdf --output text | grep attached | cut -d "       " -f7)
-
-
-echo "***********************************************************************************************"
-##Forma menos rustica
-VOLUME_ID=$(aws ec2 describe-volumes --filters Name=tag:Name,Values=oblimanual-redis-ebs --query "Volumes[*].{ID:VolumeId}" --output text)
-
-echo $VOLUME_ID
 
 #### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
 cd "$SRC_WORKDIR/redis/deployment"
