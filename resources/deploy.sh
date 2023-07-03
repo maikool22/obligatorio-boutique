@@ -98,7 +98,7 @@ sudo lvcreate -l 100%FREE -n redis-lv redis-vg
 sudo mkfs.ext4 /dev/redis-vg/redis-lv
 sudo mount /dev/redis-vg/redis-lv /data
 
-# #### Forma rustica de sacar el volume ID
+# #### Forma muy rustica de sacar el volume ID
 # VOLUME_ID=$(aws ec2 describe-volumes --filters Name=attachment.device,Values=/dev/xvdf --output text | grep attached | cut -d "       " -f7)
 
 ##Forma menos rustica
