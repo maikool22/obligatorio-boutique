@@ -61,8 +61,6 @@ sudo chmod +x /usr/local/bin/kubectl
 # Ahora nos logueamos al registry con docker
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_ID
 
-
-
 # Hacemos el build de las imagenes
 
 for service in "${MICROSERVICES[@]}"
@@ -91,22 +89,8 @@ do
   sed -i "s|<IMAGE:TAG>|$aux:latest|g" kubernetes-manifests.yaml  
 done
 
-# #### Como no se como formatear una ebs en terraform lo tengo que hacer aca....
 
-#Voy a attachear mi volumen ebs en mi instancia:
-
-# aws ec2 attach-volume --volume-id $VOLUME_ID --instance-id $INSTANCE_ID --device /dev/xvdf
-
-# #### Esto para formatear el ebs que luego voy a utilizar con redis-pv
-# sudo pvcreate /dev/xvdf
-# sudo vgcreate redis-vg /dev/xvdf
-# sudo lvcreate -l 100%FREE -n redis-lv redis-vg
-# sudo mkfs.ext4 /dev/redis-vg/redis-lv
-# sudo mkdir /data
-# sudo mount /dev/redis-vg/redis-lv /data
-
-
-#### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
+#### Por ultimo voy al manifest del redis y le cambio el <EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME_ID
 cd "$SRC_WORKDIR/redis/deployment"
 sed -i "s|<EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
 
