@@ -22,6 +22,22 @@ sudo chmod -R 770 $SRC_WORKDIR
 
 # Definimos una variable de tipo lista con los nombres de módulos para ser recorridos más adelante con bucles for.
 
+# MICROSERVICES=(
+#   "adservice"
+#   "cartservice"
+#   "checkoutservice"
+#   "currencyservice"
+#   "emailservice"
+#   "frontend"
+#   "loadgenerator"
+#   "paymentservice"
+#   "productcatalogservice"
+#   "recommendationservice"
+#   "redis"
+#   "shippingservice"
+# )
+
+
 MICROSERVICES=(
   "adservice"
   "cartservice"
@@ -32,10 +48,10 @@ MICROSERVICES=(
   "loadgenerator"
   "paymentservice"
   "productcatalogservice"
-  "recommendationservice"
-  "redis"
+  "recommendationservice"  
   "shippingservice"
 )
+
 
 # Instalamos Docker
 sudo dnf install telnet docker -y 
@@ -87,7 +103,7 @@ done
 
 
 
-sleep 30s
+sleep 60s
 
 
 # #### Como no se como formatear una ebs en terraform lo tengo que hacer aca....
@@ -104,9 +120,11 @@ sudo mount /dev/redis-vg/redis-lv /data
 ##Forma menos rustica
 VOLUME_ID=$(aws ec2 describe-volumes --filters Name=tag:Name,Values=oblimanual-redis-ebs --query "Volumes[*].{ID:VolumeId}" --output text)
 
+echo $VOLUME_ID
+
 #### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
-cd "$SRC_WORKDIR/redis/deployment"
-sed -i "s|<AWS_EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
+# cd "$SRC_WORKDIR/redis/deployment"
+# sed -i "s|<AWS_EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
 
 
 # Por último, recorremos nuevamente cada carpeta "deployment" y ejecutamos "kubectl" para cada módulo.
