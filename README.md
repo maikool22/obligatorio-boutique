@@ -122,7 +122,7 @@ terraform apply -var-file=var.tfvars
 - Evitar lo más posible la dependencia de provisioners
 - Utilizar provider de Kubernetes para la parte del build.
 - Tratar que el código sea más reciclable, utilizando módulos.
-- Lograr la persistencia y sincronización del Redis utilizando volúmenes persistentes.
+- Lograr la persistencia y sincronización del Redis utilizando volúmenes persistentes. (esto se logro en la branch de testing)
   
 ## Declaracion de Autoria:
 
