@@ -90,14 +90,14 @@ done
 sleep 30s
 
 
-#### Como no se como formatear una ebs en terraform lo tengo que hacer aca....
-#### Esto para formatear el ebs que luego voy a utilizar con redis-pv
-sudo sudo mkfs.ext4 /dev/xvdf
-sudo mkdir /data
-sudo mount /dev/xvdf /data
+# #### Como no se como formatear una ebs en terraform lo tengo que hacer aca....
+# #### Esto para formatear el ebs que luego voy a utilizar con redis-pv
+# sudo sudo mkfs.ext4 /dev/xvdf
+# sudo mkdir /data
+# sudo mount /dev/xvdf /data
 
-#### Forma rustica de sacar el volume ID
-VOLUME_ID=$(aws ec2 describe-volumes --filters Name=attachment.device,Values=/dev/xvdf --output text | grep attached | cut -d "       " -f7)
+# #### Forma rustica de sacar el volume ID
+# VOLUME_ID=$(aws ec2 describe-volumes --filters Name=attachment.device,Values=/dev/xvdf --output text | grep attached | cut -d "       " -f7)
 
 
 #### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
