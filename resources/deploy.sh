@@ -95,15 +95,15 @@ done
 
 #Voy a attachear mi volumen ebs en mi instancia:
 
-aws ec2 attach-volume --volume-id $VOLUME_ID --instance-id $INSTANCE_ID --device /dev/xvdf
+# aws ec2 attach-volume --volume-id $VOLUME_ID --instance-id $INSTANCE_ID --device /dev/xvdf
 
 # #### Esto para formatear el ebs que luego voy a utilizar con redis-pv
-sudo pvcreate /dev/xvdf
-sudo vgcreate redis-vg /dev/xvdf
-sudo lvcreate -l 100%FREE -n redis-lv redis-vg
-sudo mkfs.ext4 /dev/redis-vg/redis-lv
-sudo mkdir /data
-sudo mount /dev/redis-vg/redis-lv /data
+# sudo pvcreate /dev/xvdf
+# sudo vgcreate redis-vg /dev/xvdf
+# sudo lvcreate -l 100%FREE -n redis-lv redis-vg
+# sudo mkfs.ext4 /dev/redis-vg/redis-lv
+# sudo mkdir /data
+# sudo mount /dev/redis-vg/redis-lv /data
 
 
 #### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
