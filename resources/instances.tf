@@ -1,7 +1,7 @@
 # Creamos el bastion
 
 resource "aws_instance" "bastion" {
-  depends_on = [ aws_ebs_volume.oblimanual-redis-ebs ]
+  depends_on    = [aws_ebs_volume.oblimanual-redis-ebs]
   ami           = var.ami_id
   instance_type = var.instance_type
   root_block_device { # ampliamos la capacidad de disco por defecto de 8 a 16 GB
@@ -47,7 +47,7 @@ resource "aws_instance" "bastion" {
       "cd /tmp/obli_deploy/resources",                                                                       # Nos cambiamos al workdir
       "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",                                                  # Le doy permisos de ejecucion al script
       "sudo chmod -R 777 /tmp/obli_deploy/",                                                                 # Le doy permisos a toda la carpeta del deploy
-      "bash deploy.sh 2>%1 | tee /tmp/obli_deploy/log.txt"                                                                                       # Ejecutamos el deploy de los modulos
+      "bash deploy.sh 2>%1 | tee /tmp/obli_deploy/log.txt"                                                   # Ejecutamos el deploy de los modulos
     ]
   }
 }
