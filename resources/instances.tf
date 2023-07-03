@@ -3,7 +3,7 @@
 resource "aws_instance" "bastion" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  root_block_device {  # ampliamos la capacidad de disco por defecto de 8 a 16 GB
+  root_block_device { # ampliamos la capacidad de disco por defecto de 8 a 16 GB
     volume_size = 16
   }
   key_name               = "vockey"
@@ -37,15 +37,15 @@ resource "aws_instance" "bastion" {
   }
   provisioner "remote-exec" {
     inline = [
-      "sudo hostnamectl hostname bastion",                 #Le configuramos nombre al bastion
-      "sudo dnf -y upgrade --releasever=2023.0.20230614",  #Actualizamos el core de la ami de linux     
-      "sudo yum install -y git",                           # Instalamos git      
-      "sudo mkdir /tmp/obli_deploy/",                      #creamos carpeta temporal en el bastion
+      "sudo hostnamectl hostname bastion",                                                                   #Le configuramos nombre al bastion
+      "sudo dnf -y upgrade --releasever=2023.0.20230614",                                                    #Actualizamos el core de la ami de linux     
+      "sudo yum install -y git",                                                                             # Instalamos git      
+      "sudo mkdir /tmp/obli_deploy/",                                                                        #creamos carpeta temporal en el bastion
       "sudo git clone https://github.com/maikool22/obligatorio-boutique --branch testing /tmp/obli_deploy/", # clonamos el repo que vamos a usar
-      "cd /tmp/obli_deploy/resources",                     #nos cambiamos al workdir
-      "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",# le doy permisos de ejecucion al script
-      "sudo chmod -R 777 /tmp/obli_deploy/", # le doy permisos a toda la carpeta del deploy
-      "bash deploy.sh" #Ejecutamos el deploy de los modulos
+      "cd /tmp/obli_deploy/resources",                                                                       #nos cambiamos al workdir
+      "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",                                                  # le doy permisos de ejecucion al script
+      "sudo chmod -R 777 /tmp/obli_deploy/",                                                                 # le doy permisos a toda la carpeta del deploy
+      "bash deploy.sh"                                                                                       #Ejecutamos el deploy de los modulos
     ]
   }
 }
