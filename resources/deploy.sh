@@ -123,8 +123,8 @@ VOLUME_ID=$(aws ec2 describe-volumes --filters Name=tag:Name,Values=oblimanual-r
 echo $VOLUME_ID
 
 #### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
-# cd "$SRC_WORKDIR/redis/deployment"
-# sed -i "s|<EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
+cd "$SRC_WORKDIR/redis/deployment"
+sed -i "s|<EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
 
 echo "***********************************************************************************************************************"
 # Por último, recorremos nuevamente cada carpeta "deployment" y ejecutamos "kubectl" para cada módulo.
