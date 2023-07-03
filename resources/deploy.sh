@@ -57,20 +57,6 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 sleep 30s
 
 
-#### Como no se como formatear una ebs en terraform lo tengo que hacer aca....
-#### Esto para formatear el ebs que luego voy a utilizar con redis-pv
-sudo sudo mkfs.ext4 /dev/xvdf
-sudo mkdir /data
-sudo mount /dev/xvdf /data
-
-#### Forma rustica de sacar el volume ID
-VOLUME_ID=$(aws ec2 describe-volumes --filters Name=attachment.device,Values=/dev/xvdf --output text | grep attached | cut -d "       " -f7)
-
-
-#### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
-cd "$SRC_WORKDIRredis/deployment"
-sed -i "s|<AWS_EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
-
 # Hacemos el build de las imagenes
 
 for service in "${MICROSERVICES[@]}"
@@ -98,6 +84,25 @@ do
   echo $aux
   sed -i "s|<IMAGE:TAG>|$aux:latest|g" kubernetes-manifests.yaml  
 done
+
+
+
+sleep 30s
+
+
+#### Como no se como formatear una ebs en terraform lo tengo que hacer aca....
+#### Esto para formatear el ebs que luego voy a utilizar con redis-pv
+sudo sudo mkfs.ext4 /dev/xvdf
+sudo mkdir /data
+sudo mount /dev/xvdf /data
+
+#### Forma rustica de sacar el volume ID
+VOLUME_ID=$(aws ec2 describe-volumes --filters Name=attachment.device,Values=/dev/xvdf --output text | grep attached | cut -d "       " -f7)
+
+
+#### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
+cd "$SRC_WORKDIRredis/deployment"
+sed -i "s|<AWS_EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
 
 
 # Por último, recorremos nuevamente cada carpeta "deployment" y ejecutamos "kubectl" para cada módulo.
