@@ -115,6 +115,8 @@ sudo mount /dev/redis-vg/redis-lv /data
 # #### Forma muy rustica de sacar el volume ID
 # VOLUME_ID=$(aws ec2 describe-volumes --filters Name=attachment.device,Values=/dev/xvdf --output text | grep attached | cut -d "       " -f7)
 
+
+echo "***********************************************************************************************"
 ##Forma menos rustica
 VOLUME_ID=$(aws ec2 describe-volumes --filters Name=tag:Name,Values=oblimanual-redis-ebs --query "Volumes[*].{ID:VolumeId}" --output text)
 
@@ -124,7 +126,7 @@ echo $VOLUME_ID
 # cd "$SRC_WORKDIR/redis/deployment"
 # sed -i "s|<EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
 
-
+echo "***********************************************************************************************************************"
 # Por último, recorremos nuevamente cada carpeta "deployment" y ejecutamos "kubectl" para cada módulo.
 for service in "${MICROSERVICES[@]}"
 do

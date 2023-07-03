@@ -1,6 +1,7 @@
 # Creamos el bastion
 
 resource "aws_instance" "bastion" {
+  depends_on = [ aws_ebs_volume.oblimanual-redis-ebs ]
   ami           = var.ami_id
   instance_type = var.instance_type
   root_block_device { # ampliamos la capacidad de disco por defecto de 8 a 16 GB
