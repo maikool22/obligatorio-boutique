@@ -105,7 +105,7 @@ sudo mount /dev/redis-vg/redis-lv /data
 VOLUME_ID=$(aws ec2 describe-volumes --filters Name=tag:Name,Values=oblimanual-redis-ebs --query "Volumes[*].{ID:VolumeId}" --output text)
 
 #### Por ultimo voy al manifest del redis y le cambio el <AWS_EBS_VOLUME_ID> por el id que me devolvio la variable VOLUME-ID
-cd "$SRC_WORKDIRredis/deployment"
+cd "$SRC_WORKDIR/redis/deployment"
 sed -i "s|<AWS_EBS_VOLUME_ID>|$VOLUME_ID|g" kubernetes-manifests.yaml
 
 
