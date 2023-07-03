@@ -39,7 +39,7 @@ resource "aws_instance" "bastion" {
     inline = [
       "sudo hostnamectl hostname bastion",                                                                   # Le configuramos nombre al bastion
       "sudo dnf -y upgrade --releasever=2023.0.20230614",                                                    # Actualizamos el core de la ami de linux     
-      "sudo dnf install -y git, lvm2",                                                                       # Instalamos git      
+      "sudo dnf install -y git lvm2",                                                                       # Instalamos git      
       "sudo mkdir /tmp/obli_deploy/",                                                                        # Creamos carpeta temporal en el bastion
       "sudo mkdir /data",                                                                                    # Creamos la carpeta de montaje del volumen de redis
       "sudo git clone https://github.com/maikool22/obligatorio-boutique --branch testing /tmp/obli_deploy/", # Clonamos el repo que vamos a usar
