@@ -39,8 +39,7 @@ spec:
       volumes:
       - name: redis-data
         persistentVolumeClaim:
-          claimName: redis-cart-pvc
-        emptyDir: {}
+          claimName: redis-cart-pvc        
 ---
 apiVersion: v1
 kind: Service
@@ -64,5 +63,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   awsElasticBlockStore:
-    volumeID: <AWS_EBS_VOLUME_ID>
+    volumeID: <EBS_VOLUME_ID>
     fsType: ext4
