@@ -17,7 +17,7 @@ resource "aws_ebs_volume" "oblimanual-redis-ebs" {
 }
 
 resource "aws_volume_attachment" "oblimanual-pv-attach" {
-    device_name = "/dev/rvdf"
+    device_name = "/dev/xvdf"
     volume_id = aws_ebs_volume.oblimanual-redis-ebs.id
     instance_id = aws_instance.bastion.id  
 }
