@@ -42,7 +42,7 @@ resource "aws_instance" "bastion" {
       "sudo dnf install -y git lvm2",                                                                        # Instalamos git y las tools de lvm     
       "sudo mkdir /tmp/obli_deploy/",                                                                        # Creamos carpeta temporal en el bastion
       "sudo mkdir /data",                                                                                    # Creamos la carpeta de montaje del volumen de redis
-      "sudo git clone https://github.com/maikool22/obligatorio-boutique --branch testing /tmp/obli_deploy/", # Clonamos el repo que vamos a usar
+      "sudo git clone https://github.com/damiansandoval/obligatorio-boutique --branch testing /tmp/obli_deploy/", # Clonamos el repo que vamos a usar
       "cd /tmp/obli_deploy/resources",                                                                       # Nos cambiamos al workdir
       "sudo chmod +x /tmp/obli_deploy/resources/deploy.sh",                                                  # Le doy permisos de ejecucion al script
       "sudo chmod -R 777 /tmp/obli_deploy/",                                                                 # Le doy permisos a toda la carpeta del deploy
